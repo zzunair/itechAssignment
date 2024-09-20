@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="{{ 'custom-footer.css' | asset_url }}">
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="custom-container">
+        <div class="footer-columns">
+            {%- for block in section.blocks -%}
+                <div class="footer-column">
+                    <h4>{{block.settings.heading}}</h4>
+                    <ul>
+                        {%- for link in linklists[block.settings.menu].links -%}
+                            <li><a href="{{link.url}}">{{link.title}}</a></li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            {%- endfor -%}
+        </div>
+
+        <div class="footer-bottom">
+            <div class="language-switcher">
+                <select>
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                </select>
+            </div>
+            <div class="copyright-text">
+                <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+    
+    ],
+    "blocks": [
+        {
+            "name": "menu",
+            "type": "menus",
+            "settings": [
+                {
+                  "type": "text",
+                  "id": "heading",
+                  "label": "Heading"
+                },
+                {
+                  "type": "link_list",
+                  "id": "menu",
+                  "label": "Slect menu"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "name": "Footer",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

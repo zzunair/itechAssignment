@@ -1,52 +1,97 @@
-<link rel="stylesheet" href="{{ 'custom-header.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'custom-header.css' | asset_url }}">
 
-<header class="site-header">
-  <div class="top-header">
-    <div class="container">
-      <div class="header-left">
-        <a href="{{ shop.url }}" class="site-logo">
-          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }} logo">
-        </a>
-      </div>
+<header class="main-header">
+    <div class="header-wrapper custom-container">
+      {% comment %} <div class="custom-container"> {% endcomment %}
+        <!-- Logo Section -->
+        <div class="header-logo">
+            <a href="#">
+                <img src="{{section.settings.logo |  img_url: 'master'}}" alt="Logo">
+            </a>
+        </div>
 
-      <div class="header-center">
-        <form action="/search" method="get" class="search-bar">
-          <input type="text" name="q" placeholder="Search products..." />
-          <button type="submit">Search</button>
-        </form>
-      </div>
+        <!-- Searchbar Section -->
+        <div class="searchbar-wrapper">
+            <input type="text" placeholder="What would you like to drink today?">
+        </div>
 
-      <div class="header-right">
-        <a href="/account" class="account-icon">
-          <svg>...</svg> <!-- Insert SVG for account -->
-        </a>
-        <a href="/cart" class="cart-icon">
-          <svg>...</svg> <!-- Insert SVG for cart -->
-        </a>
-      </div>
+        <!-- User and Cart Icons Section -->
+        <div class="user-icons-wrapper">
+          <div class="login-sec">
+            <a href="/accounts">Login/Register</a> 
+          </div>
+          <div class="navbar-pipeline"></div>
+          <div class="wishlit-sec">
+            <a href="/wishlist"><img src="{{'heart.png' |  asset_img_url}}" alt="wishlist icon"></a>
+          </div>
+          <div class="navbar-pipeline"></div>
+          <div class="cart-icon-wrapper">
+              <a href="/cart"><img src="{{'shopping-cart.png' |  asset_img_url}}" alt="cart icon"></a>
+              <span>{{cart.total_price | money}}</span>
+          </div>
+        </div>
+      {% comment %} </div> {% endcomment %}
     </div>
-  </div>
-
-
-  <div class="bottom-header">
-    <nav class="navigation-menu">
-      <ul>
-        {% for link in linklists.main-menu.links %}
-          <li class="menu-item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
-            {% if link.links %}
-
-              <div class="mega-menu">
-                <ul>
-                  {% for sublink in link.links %}
-                    <li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </div>
 </header>
+
+
+<nav class="navbar-wrapper custom-container">
+  <ul>
+    {% for link in linklists.main-menu.links %}
+      <li>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        
+        {% if link.links.size > 0 %}
+        <div class="mega-menu">
+
+          <div class="mega-menu-image">
+          {%- if sub_link.type == 'collection_link' -%} 
+            {% assign linkCollection = childlink.object %} 
+            <div class="nav-collection_image"> 
+              <img crossorigin="anonymous" class="nav-child-link-image"
+              src="{{linkCollection.products.first.featured_image.src | product_img_url: '140x'}}"
+              alt="{{sub_sub_link.title}}"> </div> {%- endif -%}
+            <h3>{{ link.title }}</h3>
+            <p>Maisons and vignerons that tell a story.</p>
+            <a href="#">Discover the cellars</a>
+          </div>
+
+          {% for sub_link in link.links %}
+            <div class="mega-menu-column">
+              <h4>{{ sub_link.title }}</h4>
+              
+              {% if sub_link.links.size > 0 %}
+                {% for sub_sub_link in sub_link.links %}
+                  <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                {% endfor %}
+              {% else %}
+                <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Header",
+        }
+    ]
+  }
+{% endschema %}

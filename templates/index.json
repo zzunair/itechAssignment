@@ -1,75 +1,114 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "custom_banner_Vj4LxY": {
+      "type": "custom-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "banner_YN8ybd": {
+          "type": "banner",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "dImage": "shopify:\/\/shop_images\/01_it_Hero01_CW3624_Harvest_2x1_Thematic_sgv.jpg",
+            "mImage": "shopify:\/\/shop_images\/01_it_Hero03_CW3624_Harvest_2x1_Thematic_m_sgv.jpg",
+            "heading": "Image banner",
+            "sub-heading": "Image banner Sub Heading",
+            "btn-text": "See More",
+            "btn-url": "shopify:\/\/collections",
+            "image_overlay_opacity": 0
           }
         },
-        "button": {
-          "type": "buttons",
+        "banner_VLDpaz": {
+          "type": "banner",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "dImage": "shopify:\/\/shop_images\/01_it_Hero03_CW3624_Harvest_2x1_Thematic_sgv.jpg",
+            "mImage": "shopify:\/\/shop_images\/01_it_Hero02_CW3624_Harvest_2x1_Thematic_m_sgv.jpg",
+            "heading": "WINERIES AND PRODUCERS",
+            "sub-heading": "Discover all the wineries in the catalogue",
+            "btn-text": "Button",
+            "btn-url": "",
+            "image_overlay_opacity": 0
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "banner_YN8ybd",
+        "banner_VLDpaz"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "infinite": false,
+        "autoplay": false,
+        "slider-speed": 4000
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "custom_featured_collection_YtUhbV": {
+      "type": "custom-featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "heading": "Our large cellar",
+        "collection": "automated-collection"
+      }
+    },
+    "custom_trends_GmCq8t": {
+      "type": "custom-trends",
+      "blocks": {
+        "collection_UxUBVL": {
+          "type": "collection",
+          "settings": {
+            "collection": "automated-collection"
+          }
+        },
+        "collection_rnnfq6": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "collection_9QtcjQ": {
+          "type": "collection",
+          "settings": {
+            "collection": "hydrogen"
+          }
+        },
+        "collection_YG86Pr": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "collection_Wnq994": {
+          "type": "collection",
+          "settings": {
+            "collection": "hydrogen"
+          }
+        },
+        "collection_B3x9J4": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "collection_UxUBVL",
+        "collection_rnnfq6",
+        "collection_9QtcjQ",
+        "collection_YG86Pr",
+        "collection_Wnq994",
+        "collection_B3x9J4"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/vine-trend.png"
+      }
+    },
+    "custom_single_collection_BeWbnn": {
+      "type": "custom-single-collection",
+      "settings": {
+        "collection": "automated-collection",
+        "bg-image": "shopify:\/\/shop_images\/MicrosoftTeams-image_43.jpg"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "custom_banner_Vj4LxY",
+    "custom_featured_collection_YtUhbV",
+    "custom_trends_GmCq8t",
+    "custom_single_collection_BeWbnn"
   ]
 }

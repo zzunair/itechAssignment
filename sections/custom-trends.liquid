@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="{{ 'custom-trends.css' | asset_url }}">
+
+<section id="trends">
+    <div class="custom-trends-wrapper">
+        <div class="custom-container">
+            <div class="image-wrapper">
+                <img src="{{section.settings.image |  img_url: 'master'}}" alt="" />
+            </div>
+            <div class="content-wrapper">
+                <div class="trends-heading">
+                    <h3>
+                        Current Trends
+                    </h3>
+                </div>
+                <div class="trends-subheading">
+                    <p>Not sure what to choose? Discover the most searched categories and our customers' favorite wines .</p>
+                </div>
+                <div class="trends-btns">
+                    {%- for block in section.blocks -%}
+                        {%- assign col = block.settings.collection -%}
+                        <a class="custom-btn" href="{{col.url}}">{{col.title}}</a>
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Custom Trends",
+    "tag": "section",
+    "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "collection",
+            "limit": 6,
+            "settings": [
+                {
+                  "type": "collection",
+                  "id": "collection",
+                  "label": "Select Collection"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "name": "Custom Trends",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

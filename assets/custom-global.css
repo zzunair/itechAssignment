@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #FFFFFF;
+}
+a.skip-to-content-link.button.visually-hidden {
+    display: none;
+}
+.custom-container{
+    max-width: 1186px;
+    margin: 0 auto;
+}
+.custom-btn{
+    padding: 10px 30px;
+    border: 1px solid #8f1a37;
+    border-radius: 25px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    color: #8f1a37;
+    cursor: pointer;
+}
+.custom-btn:hover{
+    color: #fff;
+    background-color: #8f1a37;
+}
+@media all and (max-width: 767px){
+    .custom-container{
+        max-width: 100%;
+    }   
+}
