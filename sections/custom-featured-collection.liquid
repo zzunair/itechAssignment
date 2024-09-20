@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="{{ 'custom-featured-collection.css' | asset_url }}">
+
+<section id="custom-featured-collection" class="custom-container">
+    <div class="section-title-wrap">
+        <h2 class="section-title-italic">
+            {{section.settings.heading}}
+        </h2>
+    </div>
+    <div class="products-slider-wrapper">
+        <div class="products-slider"> 
+            {%- for product in section.settings.collection.products -%}
+                {% render 'custom-products-slider' with product as product %}
+            {%- endfor -%}
+            <button class="slick-prev" style="display:none;">←</button>
+            <button class="slick-next">→</button>
+        </div>
+    </div>
+</section>
+
+
+<script defer="defer">
+    $(document).ready(function () {
+        var $slider = $('.products-slider');
+
+         $slider.slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: false,
+            autoplaySpeed: 6000,
+            pauseOnHover: false,
+            prevArrow: $('.slick-prev'),
+            nextArrow: $('.slick-next'),
+            responsive: [
+                {
+                breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
+        function checkArrows(slider, currentSlide) {
+            var totalSlides = slider.slick('getSlick').slideCount;
+            var slidesToShow = slider.slick('slickGetOption', 'slidesToShow');
+
+            if (currentSlide === 0) {
+                // Hide left arrow if on the first slide
+                $('.slick-prev').hide();
+            } else {
+                // Show left arrow if not on the first slide
+                $('.slick-prev').show();
+            }
+
+            if (currentSlide >= totalSlides - slidesToShow) {
+                // Hide right arrow if on the last slide
+                $('.slick-next').hide();
+            } else {
+                // Show right arrow if not on the last slide
+                $('.slick-next').show();
+            }
+        }
+
+        // Initial check on page load
+        checkArrows($slider, 0);
+
+        // Update arrows on slide change
+        $slider.on('afterChange', function (event, slick, currentSlide) {
+            checkArrows($slider, currentSlide);
+        });
+    })
+    function addToCart(variantId) {
+        const data = {
+            items: [{
+                id: variantId,
+                quantity: 1
+            }]
+        };
+
+        fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // document.querySelector('.cart-notification').style.display = 'block';
+                // setTimeout(() => {
+                //     // document.querySelector('.cart-notification').style.display = 'none';
+                // }, 2000);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+
+{% schema %}
+  {
+    "name": "Custom Collection",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Section title"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select Collection"
+      }
+    ],
+    "blocks": [
+        {
+            "type": "banner",
+            "name": "banner",
+            "limit": 10,
+            "settings": [
+
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "name": "Custom Collection",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

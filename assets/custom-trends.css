@@ -1,0 +1,70 @@
+.custom-trends-wrapper{
+    position: relative;
+    background-color: #f1f3f4;
+}
+.custom-trends-wrapper .image-wrapper img{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.custom-trends-wrapper .content-wrapper{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 65px 0;
+}
+
+.custom-trends-wrapper .content-wrapper h3{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "lato", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.custom-trends-wrapper .content-wrapper p{
+    font-size: 14px;
+    font-family: 'lato', sans-serif;
+}
+.trends-subheading{
+    width: 330px;
+    margin-bottom: 20px;
+}
+.content-wrapper .custom-btn{
+    text-decoration: none;
+    z-index: 10;
+    background-color: white;
+    font-family: 'lato', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.content-wrapper .custom-btn:hover{
+    background-color: #8f1a37;
+}
+.content-wrapper .custom-btn:nth-child(1){
+    background-color: #8f1a37;
+    color: white;
+}
+.trends-btns{
+    display: flex;
+    flex-direction: row;
+
+    flex-flow: row wrap;
+}
+@media all and (max-width: 767px){
+    .custom-trends-wrapper .content-wrapper{
+        padding: 65px 20px;       
+    }
+    .trends-btns{
+        gap: 20px;
+    }
+    .custom-trends-wrapper .image-wrapper img{
+        width: 100%;
+    }
+}
